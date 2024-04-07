@@ -100,7 +100,7 @@ leadkedData %>% head(1)
 
 ``` r
 traficByTime <- df %>% select(timestamp, src, dst, bytes) %>% filter(!str_detect(dst, '1[2-4].*')) %>% mutate(timestamp = hour(as_datetime(timestamp/1000))) %>% group_by(timestamp) %>% summarize(traffic_size = sum(bytes)) %>% arrange(desc(traffic_size))
-traficByTime %>% collect() %>% print(n = Inf)
+traficByTime %>% collect()
 ```
 
     # A tibble: 24 × 2
